@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "682201248582",
+    "firebase_url": "https://tvsi-39528-default-rtdb.firebaseio.com",
+    "project_id": "tvsi-39528",
+    "storage_bucket": "tvsi-39528.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682201248582:android:111415531d7751324bab47",
+        "android_client_info": {
+          "package_name": "com.goline.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682201248582-pdl7p40krttiumfpehi2smnskubj726d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYLU0PZ89wFbINecgNSIqqbeUCRzXcmVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682201248582-pdl7p40krttiumfpehi2smnskubj726d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "682201248582-5b1ctn1jck1mbsedhpaghqsd17l9lrp1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.goline.testapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

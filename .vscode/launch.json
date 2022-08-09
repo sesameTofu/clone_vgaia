@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "vgaia uat",
+            "request": "launch",
+            "program": "lib/main_uat.dart",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "uat"
+            ]
+        },
+        {
+            "name": "vgaia prod",
+            "request": "launch",
+            "program": "lib/main_prod.dart",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "prod"
+            ]
+        },
+        {
+            "name": "flutter_mobile (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}

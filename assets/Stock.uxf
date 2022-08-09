@@ -1,0 +1,72 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>877</x><y>110</y><w>210</w><h>170</h></coordinates><panel_attributes>StockItem
+--
+secId: String
+Market: String
+celling: double
+floor: double
+basicPrice: double
+vName: String
+eName:String
+sName:String
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>877</x><y>20</y><w>210</w><h>70</h></coordinates><panel_attributes>Match
+--
+price: double
+vol: Long
+Time: Date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>537</x><y>10</y><w>210</w><h>70</h></coordinates><panel_attributes>MatchData
+--
+max : Match
+min : Match
+listMatch : List&lt;Match&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>737</x><y>40</y><w>160</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>577</x><y>110</y><w>210</w><h>70</h></coordinates><panel_attributes>StockInfo
+--
+pv : double
+pe: double
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>230</x><y>10</y><w>210</w><h>120</h></coordinates><panel_attributes>StockRepos
+--
+listStock : &lt;String,StockViewModel&gt;
+
+--
++ getStockItem(SecId: String) : StockItem?
++ addStockItem(item:StockViewModel): void
+- storeCache()
+- loadCache()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>770</y><w>210</w><h>130</h></coordinates><panel_attributes>StockUserCase
+--
+repos : StockRepos
+
+--
+- loadAllStockInfo(): void // store Map&lt;key.value&gt; to repos
+--
++ getStock(SecId:String) : StockViewModel
++ findStock(text:String): List&lt;StockViewModel&gt;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>90</y><w>150</w><h>700</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;680;10;530;10;10;130;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>229</x><y>190</y><w>210</w><h>190</h></coordinates><panel_attributes>StockViewModel
+--
+stock : StockItem
+matches : MatchData
+Info: StockInfo
+lastPrice: double
+api: StockAPI
+socket:Socket
+notify: StockNotify
+--
+getStepPrice():double
+updateStockInfo(data: Map) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>429</x><y>40</y><w>130</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;170;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>429</x><y>140</y><w>170</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;120;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>429</x><y>170</y><w>470</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;120;450;10</additional_attributes></element><element><id>Relation</id><coordinates><x>319</x><y>120</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLInterface</id><coordinates><x>179</x><y>410</y><w>100</w><h>100</h></coordinates><panel_attributes>NotifyInterface
+--
+haveSubcrible()
+noSubcrible()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>620</y><w>210</w><h>100</h></coordinates><panel_attributes>Notify
+--
+stream: Steam Boastcast &lt;key,value&gt;
+
+--
+pushEvent(data&lt;key.value)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>380</y><w>150</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;50;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>370</y><w>110</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;250</additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>550</y><w>210</w><h>90</h></coordinates><panel_attributes>StockClient
+--
+getStockInfomation
+getmatchData
+subcribleRealTimeData
+unSubcribleRealTimeData</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>870</x><y>330</y><w>220</w><h>120</h></coordinates><panel_attributes>StockUpdateData
+--
+updateMatchData(Map&lt;key,value&gt;)
+UpdateStockInfo(Map&lt;key,value&gt;)
+UpdateSocketData(Map&lt;key,value&gt;)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>370</y><w>500</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;480;180</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>340</y><w>600</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>580;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>780</y><w>100</w><h>30</h></coordinates><panel_attributes>Socket</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>780</y><w>100</w><h>30</h></coordinates><panel_attributes>RestAPI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>980</x><y>780</y><w>100</w><h>30</h></coordinates><panel_attributes>LightStreamer</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>780</y><w>100</w><h>30</h></coordinates><panel_attributes>WebSocket</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>820</y><w>100</w><h>30</h></coordinates><panel_attributes>SOAP</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>820</y><w>100</w><h>30</h></coordinates><panel_attributes>GRPC</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>640</y><w>40</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;90;20;10</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>490</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>30;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>920</x><y>420</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element></diagram>

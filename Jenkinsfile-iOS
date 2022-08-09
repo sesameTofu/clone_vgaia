@@ -1,0 +1,57 @@
+def appname = "Runner" // This refers to the flutter 'Runner' target.
+def xcarchive = "${appname}.xcarchive"
+
+pipeline {
+    agent { label 'master' } //Change this to whatever your flutter jenkins nodes are labeled.
+
+    stages {
+        stage ('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage ('Run Flutter Clean') {
+            steps {
+                sh 'flutter clean'
+            }
+        }
+        stage ('Run Flutter format') {
+            steps {
+                sh "flutter format --set-exit-if-changed ."
+            }
+        }
+        stage ('Run Flutter Analysis') {
+            steps {
+                sh "flutter analyze"
+            }
+        }
+        stage ('Run Flutter Verify') {
+            steps {
+                sh "flutter pub get"
+                sh "flutter test"
+                dir("ios") {
+                    sh "pod update"
+                }
+            }
+        }
+        stage('Build and Deploy iOS'){
+            steps {
+                sh 'flutter build ipa --release --flavor "${ENV}" -t lib/main_"${ENV}".dart'
+                sh 'xcodebuild -archivePath build/ios/archive/*.xcarchive  -exportOptionsPlist key/exportOptions_"${ENV}".plist  -exportPath build/ios/ -allowProvisioningUpdates -exportArchive'
+                sh 'xcrun altool --validate-app -t ios -f build/ios/*.ipa -u "${APPLEID_USERNAME}" -p "${APPLEID_PASSWORD}"'
+                sh 'xcrun altool --upload-app -t ios -f build/ios/*.ipa -u "${APPLEID_USERNAME}" -p "${APPLEID_PASSWORD}"'
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                sh "flutter clean"
+            }
+        }
+    }
+
+    // post { 
+    //     success { 
+    //             slackSend channel: '#automation', message: 'The $BUILD_NUMBER succeeded and the apps uploaded successfully'
+    //     }
+    // }
+}
